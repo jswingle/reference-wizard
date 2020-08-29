@@ -44,15 +44,20 @@ for chapter in chapters:
         section.decompose()
 
     verse = 1
+    missed_verse = False
 
     while True:
         verse_lookup = 'text ' + book_abbreviations[book] + '-' + str(chapter) + '-' + str(verse)
         selection = soup.find_all(class_=verse_lookup)
 
-# This loop break strategy hasn't yet been tested on chapters where the verse is only in the footnotes
+# Checks for more than one missed verse in a row before breaking to next chapter. This covers vss. that are only in the footnotes.
 
         if not selection:
-            break
+        	if missed_verse:
+        		break
+        	missed_verse = True
+        	verse += 1
+        	continue
 
 # Some verses use multiple "Matt-1-1" tags, so verse_text needs to be defined as a blank string outside the upcoming loop
 
