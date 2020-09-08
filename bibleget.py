@@ -83,7 +83,7 @@ def add_book(book,translation):
 	            for sup in item('sup'):
 	                sup.decompose()
 
-	# Here we do += to ensure all HTML tags attached to one verse get added together as part of one verse.
+	# Here we ensure all HTML tags attached to one verse get added together as part of one verse.
 
 	            verse_text += item.getText() + ' '
 
